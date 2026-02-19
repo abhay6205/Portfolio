@@ -1,0 +1,83 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Django CI
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      SECRET_KEY: ci-test-secret-key-not-for-production
+      DB_NAME: postgres
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_HOST: localhost
+      DB_PORT: 5432
+      EMAIL_HOST_USER: test@example.com
+      EMAIL_HOST_PASSWORD: not-a-real-password
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Django system check
+        working-directory: portfolio
+        run: python manage.py check --deploy 2>&1 || python manage.py check
+
+      - name: Run migrations
+        working-directory: portfolio
+        run: python manage.py migrate --noinput
+
+      - name: Verify all URL routes load
+        working-directory: portfolio
+        run: |
+          python manage.py runserver 8080 &
+          sleep 3
+          for url in / /about/ /projects/ /contact/ /blog/ /api/projects/ /api/experiences/ /api/blogs/ /api/docs/; do
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8080$url)
+            echo "$STATUS - $url"
+            if [ "$STATUS" != "200" ]; then
+              echo "FAIL: $url returned $STATUS"
+              exit 1
+            fi
+          done
+          echo "All endpoints returned 200 OK"
+
+  docker:
+    name: Docker Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t portfolio .
