@@ -4,7 +4,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.template.loader import render_to_string
 
-from .models import Project, Experience, ContactMessage, Blog
+from .models import Project, Experience, ContactMessage, Blog, Education
 from .forms import ContactForm
 
 
@@ -64,9 +64,10 @@ def home(request):
         return redirect('home')
 
     context = {
+        'educations': Education.objects.all(),
         'experiences': Experience.objects.all(),
         'projects': Project.objects.all(),
-        'blogs': Blog.objects.all().order_by('-created_at'),
+        'blogs': Blog.objects.filter(is_published=True),
     }
     return render(request, 'main/home.html', context)
 
@@ -96,5 +97,5 @@ def contact(request):
 
 
 def blog(request):
-    blogs = Blog.objects.all().order_by('-created_at')
+    blogs = Blog.objects.filter(is_published=True)
     return render(request, 'main/blog.html', {'blogs': blogs})

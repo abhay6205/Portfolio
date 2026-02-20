@@ -4,12 +4,13 @@ from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.conf import settings
 
-from .models import Project, Experience, Blog
+from .models import Project, Experience, Blog, Education
 from .serializers import (
     ProjectSerializer,
     ExperienceSerializer,
     BlogSerializer,
     ContactMessageSerializer,
+    EducationSerializer,
 )
 
 
@@ -24,8 +25,13 @@ class ExperienceListAPI(generics.ListAPIView):
 
 
 class BlogListAPI(generics.ListAPIView):
-    queryset = Blog.objects.all().order_by('-created_at')
+    queryset = Blog.objects.filter(is_published=True)
     serializer_class = BlogSerializer
+
+
+class EducationListAPI(generics.ListAPIView):
+    queryset = Education.objects.all()
+    serializer_class = EducationSerializer
 
 
 class ContactCreateAPI(generics.CreateAPIView):
