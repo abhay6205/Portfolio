@@ -55,6 +55,14 @@ Portfolio/
 ├── LICENSE
 ├── README.md
 ├── requirements.txt            # pip install -r requirements.txt
+├── assets/
+│   └── screenshots/            # App screenshots for README
+│       ├── Hero_section.png
+│       ├── about_me_section.png
+│       ├── Education_section.png
+│       ├── Project_section.png
+│       ├── Contact_me_section.png
+│       └── Admin_management_portal.png
 ├── portfolio/                  # Django project root
 │   ├── .env                    # Credentials (gitignored)
 │   ├── manage.py
@@ -276,7 +284,29 @@ erDiagram
 
 ---
 
-## 🔐 Security
+## � Screenshots
+
+### Hero Section
+![Hero Section](assets/screenshots/Hero_section.png)
+
+### About Me
+![About Me](assets/screenshots/about_me_section.png)
+
+### Education
+![Education](assets/screenshots/Education_section.png)
+
+### Projects
+![Projects](assets/screenshots/Project_section.png)
+
+### Contact Me
+![Contact Me](assets/screenshots/Contact_me_section.png)
+
+### Admin Management Portal
+![Admin Portal](assets/screenshots/Admin_management_portal.png)
+
+---
+
+## �🔐 Security
 
 - ✅ All credentials stored in `.env` (gitignored)
 - ✅ `SECRET_KEY`, database password, and email password are **never committed**
