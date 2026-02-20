@@ -99,3 +99,172 @@ def contact(request):
 def blog(request):
     blogs = Blog.objects.filter(is_published=True)
     return render(request, 'main/blog.html', {'blogs': blogs})
+
+
+# ============================================================
+# CUSTOM ADMIN PANEL VIEWS
+# ============================================================
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404
+from .models import ContactMessage
+from .admin_forms import ProjectForm, BlogForm, EducationForm, ExperienceForm
+
+# Model configuration map for DRY CRUD
+MODEL_CONFIG = {
+    'project': {
+        'model': Project,
+        'form': ProjectForm,
+        'icon': 'fa-folder-open',
+        'label': 'Project',
+    },
+    'blog': {
+        'model': Blog,
+        'form': BlogForm,
+        'icon': 'fa-pen-to-square',
+        'label': 'Blog Post',
+    },
+    'education': {
+        'model': Education,
+        'form': EducationForm,
+        'icon': 'fa-graduation-cap',
+        'label': 'Education',
+    },
+    'experience': {
+        'model': Experience,
+        'form': ExperienceForm,
+        'icon': 'fa-briefcase',
+        'label': 'Experience',
+    },
+    'contactmessage': {
+        'model': ContactMessage,
+        'form': None,
+        'icon': 'fa-envelope',
+        'label': 'Contact Message',
+    },
+}
+
+
+def _admin_context():
+    """Common context for all admin pages (sidebar counts)."""
+    return {
+        'project_count': Project.objects.count(),
+        'blog_count': Blog.objects.count(),
+        'education_count': Education.objects.count(),
+        'experience_count': Experience.objects.count(),
+        'message_count': ContactMessage.objects.count(),
+    }
+
+
+def admin_login(request):
+    if request.user.is_authenticated and request.user.is_staff:
+        return redirect('admin_dashboard')
+
+    error = None
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None and user.is_staff:
+            login(request, user)
+            return redirect('admin_dashboard')
+        else:
+            error = 'Invalid credentials or insufficient permissions.'
+
+    return render(request, 'main/admin_login.html', {'error': error})
+
+
+@login_required(login_url='admin_login')
+def admin_logout(request):
+    logout(request)
+    return redirect('home')
+
+
+@login_required(login_url='admin_login')
+def admin_dashboard(request):
+    context = _admin_context()
+    context.update({
+        'active_tab': 'dashboard',
+        'projects': Project.objects.all(),
+        'blogs': Blog.objects.all(),
+        'educations': Education.objects.all(),
+        'experiences': Experience.objects.all(),
+        'contact_messages': ContactMessage.objects.all().order_by('-created_at'),
+    })
+    return render(request, 'main/admin_dashboard.html', context)
+
+
+@login_required(login_url='admin_login')
+def admin_add(request, model_name):
+    config = MODEL_CONFIG.get(model_name)
+    if not config or not config['form']:
+        return redirect('admin_dashboard')
+
+    if request.method == 'POST':
+        form = config['form'](request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'{config["label"]} added successfully!')
+            return redirect('admin_dashboard')
+    else:
+        form = config['form']()
+
+    context = _admin_context()
+    context.update({
+        'form': form,
+        'form_title': f'Add {config["label"]}',
+        'form_icon': config['icon'],
+        'submit_label': f'Add {config["label"]}',
+        'active_tab': f'{model_name}s',
+    })
+    return render(request, 'main/admin_form.html', context)
+
+
+@login_required(login_url='admin_login')
+def admin_edit(request, model_name, pk):
+    config = MODEL_CONFIG.get(model_name)
+    if not config or not config['form']:
+        return redirect('admin_dashboard')
+
+    obj = get_object_or_404(config['model'], pk=pk)
+
+    if request.method == 'POST':
+        form = config['form'](request.POST, request.FILES, instance=obj)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'{config["label"]} updated successfully!')
+            return redirect('admin_dashboard')
+    else:
+        form = config['form'](instance=obj)
+
+    context = _admin_context()
+    context.update({
+        'form': form,
+        'form_title': f'Edit {config["label"]}',
+        'form_icon': config['icon'],
+        'submit_label': 'Save Changes',
+        'active_tab': f'{model_name}s',
+    })
+    return render(request, 'main/admin_form.html', context)
+
+
+@login_required(login_url='admin_login')
+def admin_delete(request, model_name, pk):
+    config = MODEL_CONFIG.get(model_name)
+    if not config:
+        return redirect('admin_dashboard')
+
+    obj = get_object_or_404(config['model'], pk=pk)
+
+    if request.method == 'POST':
+        obj.delete()
+        messages.success(request, f'{config["label"]} deleted successfully!')
+        return redirect('admin_dashboard')
+
+    context = _admin_context()
+    context.update({
+        'object_name': config['label'],
+        'object_title': str(obj),
+        'active_tab': f'{model_name}s',
+    })
+    return render(request, 'main/admin_delete.html', context)
