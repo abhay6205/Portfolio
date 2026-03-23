@@ -35,6 +35,13 @@
         </div>
     </div>
     <div class="stat-card">
+        <div class="stat-icon" style="color: #20c997; background: rgba(32, 201, 151, 0.15);"><i class="fa-solid fa-certificate"></i></div>
+        <div class="stat-info">
+            <h3>{{ certificate_count }}</h3>
+            <p>Certificates</p>
+        </div>
+    </div>
+    <div class="stat-card">
         <div class="stat-icon red"><i class="fa-solid fa-envelope"></i></div>
         <div class="stat-info">
             <h3>{{ message_count }}</h3>
@@ -219,6 +226,56 @@
             {% empty %}
             <tr>
                 <td colspan="4" class="empty-table"><i class="fa-solid fa-briefcase"></i>No experiences yet</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Certificates Section -->
+<div class="admin-section" id="certificates">
+    <div class="section-head">
+        <h2><i class="fa-solid fa-certificate"></i> Certificates</h2>
+        <a href="{% url 'admin_add' model_name='certificate' %}" class="btn btn-primary">
+            <i class="fa-solid fa-plus"></i> Add Certificate
+        </a>
+    </div>
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Issuer</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cert in certificates %}
+            <tr>
+                <td>{{ cert.title }}</td>
+                <td>{{ cert.issuer }}</td>
+                <td>
+                    {% if cert.status == 'Certified' %}
+                    <span class="badge" style="background: rgba(0, 200, 150, 0.1); color: var(--accent-dark);">Certified</span>
+                    {% else %}
+                    <span class="badge" style="background: rgba(240, 165, 0, 0.1); color: #f0a500;">{{ cert.status }}</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <div class="actions">
+                        <a href="{% url 'admin_edit' model_name='certificate' pk=cert.pk %}" class="btn btn-sm btn-edit">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                        <a href="{% url 'admin_delete' model_name='certificate' pk=cert.pk %}"
+                            class="btn btn-sm btn-delete">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="empty-table"><i class="fa-solid fa-certificate"></i>No certificates yet</td>
             </tr>
             {% endfor %}
         </tbody>

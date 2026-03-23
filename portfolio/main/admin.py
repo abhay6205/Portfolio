@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Education, Experience, Project, Blog, ContactMessage
+from .models import Education, Experience, Project, Blog, ContactMessage, Certificate
 
 
 # ─── Site Branding ───────────────────────────────────────────────────────
@@ -63,3 +63,24 @@ class ContactMessageAdmin(admin.ModelAdmin):
 
     def has_change_permission(self, request, obj=None):
         return False
+
+
+# ─── Certificates ────────────────────────────────────────────────────────
+@admin.register(Certificate)
+class CertificateAdmin(admin.ModelAdmin):
+    list_display = ('title', 'issuer', 'status', 'order')
+    list_editable = ('order',)
+    list_filter = ('issuer', 'status')
+    search_fields = ('title', 'issuer', 'topics')
+    ordering = ('order',)
+    fieldsets = (
+        ('Basic Information', {
+            'fields': ('title', 'issuer', 'topics')
+        }),
+        ('Media & Links', {
+            'fields': ('image', 'icon', 'certificate_link')
+        }),
+        ('Status Tracking', {
+            'fields': ('status', 'order')
+        }),
+    )

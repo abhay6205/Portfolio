@@ -51,6 +51,31 @@ class Project(models.Model):
         return self.title
 
 
+class Certificate(models.Model):
+    STATUS_CHOICES = [
+        ('Certified', 'Certified'),
+        ('In Progress', 'In Progress'),
+    ]
+
+    title = models.CharField(max_length=200)
+    issuer = models.CharField(max_length=100, help_text='e.g. NPTEL, Coursera, Udemy')
+    topics = models.CharField(max_length=300, blank=True, help_text='Comma-separated skills, e.g. TCP/IP, Routing')
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Certified')
+    certificate_link = models.URLField(blank=True, help_text='URL to view the certificate')
+    image = models.ImageField(upload_to='certificates/', blank=True, null=True, help_text='Upload certificate logo')
+    icon = models.CharField(
+        max_length=60, default='fa-solid fa-certificate',
+        help_text='FontAwesome icon class, e.g. fa-solid fa-award',
+    )
+    order = models.PositiveIntegerField(default=0, help_text='Lower numbers appear first')
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return f'{self.title} — {self.issuer}'
+
+
 class Blog(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()

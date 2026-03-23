@@ -4,7 +4,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.template.loader import render_to_string
 
-from .models import Project, Experience, ContactMessage, Blog, Education
+from .models import Project, Experience, ContactMessage, Blog, Education, Certificate
 from .forms import ContactForm
 
 
@@ -67,6 +67,7 @@ def home(request):
         'educations': Education.objects.all(),
         'experiences': Experience.objects.all(),
         'projects': Project.objects.all(),
+        'certificates': Certificate.objects.all(),
         'blogs': Blog.objects.filter(is_published=True),
     }
     return render(request, 'main/home.html', context)
@@ -108,7 +109,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from .models import ContactMessage
-from .admin_forms import ProjectForm, BlogForm, EducationForm, ExperienceForm
+from .admin_forms import ProjectForm, BlogForm, EducationForm, ExperienceForm, CertificateForm
 
 # Model configuration map for DRY CRUD
 MODEL_CONFIG = {
@@ -136,6 +137,12 @@ MODEL_CONFIG = {
         'icon': 'fa-briefcase',
         'label': 'Experience',
     },
+    'certificate': {
+        'model': Certificate,
+        'form': CertificateForm,
+        'icon': 'fa-certificate',
+        'label': 'Certificate',
+    },
     'contactmessage': {
         'model': ContactMessage,
         'form': None,
@@ -152,6 +159,7 @@ def _admin_context():
         'blog_count': Blog.objects.count(),
         'education_count': Education.objects.count(),
         'experience_count': Experience.objects.count(),
+        'certificate_count': Certificate.objects.count(),
         'message_count': ContactMessage.objects.count(),
     }
 
@@ -189,6 +197,7 @@ def admin_dashboard(request):
         'blogs': Blog.objects.all(),
         'educations': Education.objects.all(),
         'experiences': Experience.objects.all(),
+        'certificates': Certificate.objects.all(),
         'contact_messages': ContactMessage.objects.all().order_by('-created_at'),
     })
     return render(request, 'main/admin_dashboard.html', context)

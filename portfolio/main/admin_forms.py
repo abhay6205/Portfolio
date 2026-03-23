@@ -1,5 +1,5 @@
 from django import forms
-from .models import Project, Blog, Education, Experience
+from .models import Project, Blog, Education, Experience, Certificate
 
 
 class ProjectForm(forms.ModelForm):
@@ -50,5 +50,20 @@ class ExperienceForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'placeholder': 'Describe your role and achievements...', 'rows': 5}),
             'partner_label': forms.TextInput(attrs={'placeholder': 'e.g. LPU Winter PEP Training (optional)'}),
             'github_link': forms.URLInput(attrs={'placeholder': 'https://github.com/... (optional)'}),
+            'order': forms.NumberInput(attrs={'placeholder': '1'}),
+        }
+
+
+class CertificateForm(forms.ModelForm):
+    class Meta:
+        model = Certificate
+        fields = ['title', 'issuer', 'topics', 'status', 'certificate_link', 'image', 'icon', 'order']
+        widgets = {
+            'title': forms.TextInput(attrs={'placeholder': 'e.g. Advanced Computer Networks'}),
+            'issuer': forms.TextInput(attrs={'placeholder': 'e.g. NPTEL, Coursera'}),
+            'topics': forms.TextInput(attrs={'placeholder': 'TCP/IP, Routing, Network Security (comma-separated)'}),
+            'status': forms.Select(),
+            'certificate_link': forms.URLInput(attrs={'placeholder': 'https://... (optional)'}),
+            'icon': forms.TextInput(attrs={'placeholder': 'fa-solid fa-certificate'}),
             'order': forms.NumberInput(attrs={'placeholder': '1'}),
         }

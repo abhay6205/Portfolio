@@ -72,6 +72,11 @@
                     <i class="fa-solid fa-briefcase"></i> Experiences
                     {% if experience_count %}<span class="nav-badge">{{ experience_count }}</span>{% endif %}
                 </a>
+                <a href="{% url 'admin_dashboard' %}#certificates"
+                    class="nav-item {% if active_tab == 'certificates' %}active{% endif %}">
+                    <i class="fa-solid fa-certificate"></i> Certificates
+                    {% if certificate_count %}<span class="nav-badge">{{ certificate_count }}</span>{% endif %}
+                </a>
                 <a href="{% url 'admin_dashboard' %}#messages"
                     class="nav-item {% if active_tab == 'messages' %}active{% endif %}">
                     <i class="fa-solid fa-envelope"></i> Messages
