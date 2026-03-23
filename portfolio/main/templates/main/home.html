@@ -190,6 +190,8 @@
             <div class="project-card-image">
                 {% if project.image %}
                 <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                {% elif 'dashboard' in project.title|lower %}
+                <img src="{% static 'main/images/projects/dashboard.png' %}" alt="{{ project.title }}">
                 {% else %}
                 <i class="fa-solid fa-code"></i>
                 {% endif %}
