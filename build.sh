@@ -11,6 +11,3 @@ python manage.py collectstatic --no-input
 
 # Apply migrations
 python manage.py migrate
-
-# create admin panel
-python manage.py createsuperuser --noinput || true
