@@ -12,7 +12,7 @@
             </div>
 
             <h1 class="hero-title">
-                <span>ML Engineer Aspirant</span>
+                <span>ML Engineer</span>
             </h1>
 
             <p class="hero-description">
@@ -68,110 +68,120 @@
 
 <!-- ===== ABOUT SECTION ===== -->
 <section class="section" id="about">
-    <div class="section-header reveal">
-        <span class="section-label">About Me</span>
-        <h2 class="section-title">Know Who I Am</h2>
-    </div>
-
     <!-- About â€” Professional Layout -->
     <div class="about-container reveal">
+        <h2 class="about-main-title">Know Who I Am</h2>
+        
+        <div class="about-content-row">
+            <!-- Bio Text -->
+            <div class="about-bio">
+                <h3 class="about-subtitle">
+                    Engineering Intelligent Systems<br>with Data and Machine Learning
+                </h3>
+                <p class="about-paragraph">
+                    Driven by a passion for <strong>Machine Learning</strong> and intelligent systems, I build data-driven solutions that transform complex information into practical applications. From developing <strong>ML-powered mentor matching platforms</strong> to creating real-time system monitoring dashboards, I enjoy solving meaningful problems through code. Recognized with a <strong>Bronze Badge on CodeChef</strong> and <strong>Silver in Python on HackerRank</strong>, I continuously strive to improve my technical skills and build impactful technology.
+                </p>
+                <a href="#about" class="btn btn-primary" style="margin-top: 1.5rem; border-radius: 8px;">More About Me</a>
+            </div>
+
+            <!-- Illustration -->
+            <div class="about-illustration">
+                <!-- Placeholder for the custom illustration. The user can add their own image. -->
+                <img src="{% static 'main/images/about_illustration.png' %}" alt="Illustration" class="about-img" />
+            </div>
+        </div>
+
         <!-- Stats Row -->
-        <div class="about-stats">
-            <div class="about-stat-item">
-                <div class="about-stat-number">8.16</div>
+        <div class="about-stats-cards">
+            <div class="about-stat-card">
+                <i class="fa-solid fa-graduation-cap stat-icon"></i>
+                <div class="about-stat-number">8.18</div>
                 <div class="about-stat-label">CGPA</div>
             </div>
-            <div class="about-stat-divider"></div>
-            <div class="about-stat-item">
+            <div class="about-stat-card">
+                <i class="fa-solid fa-code stat-icon"></i>
+                <div class="about-stat-number">3</div>
+                <div class="about-stat-label">PROJECTS BUILT</div>
+            </div>
+            <div class="about-stat-card">
+                <i class="fa-solid fa-briefcase stat-icon"></i>
                 <div class="about-stat-number">2</div>
-                <div class="about-stat-label">Projects Built</div>
+                <div class="about-stat-label">INDUSTRY TRAININGS</div>
             </div>
-            <div class="about-stat-divider"></div>
-            <div class="about-stat-item">
-                <div class="about-stat-number">2</div>
-                <div class="about-stat-label">Industry Trainings</div>
-            </div>
-            <div class="about-stat-divider"></div>
-            <div class="about-stat-item">
-                <div class="about-stat-number">3+</div>
-                <div class="about-stat-label">Certificates</div>
-            </div>
-        </div>
-
-        <!-- Bio Text -->
-        <div class="about-bio">
-            <p>
-                Driven by a deep passion for <strong>Machine Learning</strong> and intelligent systems,
-                I specialize in transforming complex data into actionable solutions. With industry training
-                in <strong>AI &amp; ML through IBM's partnered program</strong> and hands-on expertise in
-                full-stack development using <strong>Django</strong>, I bridge the gap between data science
-                and production-ready applications.
-            </p>
-            <p>
-                From building <strong>ML-powered mentor-matching platforms</strong> with K-Means and TF-IDF
-                to crafting real-time system monitoring dashboards, I thrive on solving meaningful problems
-                through code. I'm recognized with a <strong>Bronze Badge on CodeChef</strong> and
-                <strong>Silver in Python on HackerRank</strong>, reflecting my commitment to continuous growth.
-            </p>
-        </div>
-
-        <!-- What I Do Cards -->
-        <div class="about-focus-grid">
-            <div class="about-focus-card">
-                <i class="fa-solid fa-brain"></i>
-                <h4>Machine Learning</h4>
-                <p>Scikit-learn, K-Means, TF-IDF, EDA, Feature Engineering</p>
-            </div>
-            <div class="about-focus-card">
-                <i class="fa-solid fa-code"></i>
-                <h4>Web Development</h4>
-                <p>Python, Django, HTML/CSS, JavaScript, REST APIs</p>
-            </div>
-            <div class="about-focus-card">
-                <i class="fa-solid fa-terminal"></i>
-                <h4>Problem Solving</h4>
-                <p>DSA, C++, Competitive Programming, Algorithmic Thinking</p>
+            <div class="about-stat-card">
+                <i class="fa-solid fa-certificate stat-icon"></i>
+                <div class="about-stat-number">3</div>
+                <div class="about-stat-label">CERTIFICATES</div>
             </div>
         </div>
     </div>
+</section>
 
-    <!-- Skills â€” Technical & Soft Skills Cards -->
-    <div class="skills-cards reveal">
+<!-- ===== SKILLS SECTION ===== -->
+<section class="section" id="skills">
+    <div class="section-header reveal">
+        <span class="section-label">Expertise</span>
+        <h2 class="section-title">Skills</h2>
+    </div>
+
+    <!-- Skills — Advanced Glassmorphism Cards -->
+    <div class="glass-skills-cards reveal">
         <!-- Technical Skills Card -->
-        <div class="skills-card">
-            <div class="skills-card-header">
-                <i class="fa-solid fa-laptop-code"></i>
+        <div class="glass-skill-card">
+            <div class="glass-card-front">
+                <i class="fa-solid fa-microchip"></i>
                 <h3>Technical Skills</h3>
+                <p>Hover to explore my technical stack</p>
             </div>
-            <div class="skills-grid">
-                <span class="skill-tag"><i class="fa-brands fa-python"></i> Python</span>
-                <span class="skill-tag"><i class="fa-solid fa-code"></i> Django</span>
-                <span class="skill-tag"><i class="fa-brands fa-html5"></i> HTML/CSS</span>
-                <span class="skill-tag"><i class="fa-brands fa-js"></i> JavaScript</span>
-                <span class="skill-tag"><i class="fa-solid fa-database"></i> SQL</span>
-                <span class="skill-tag"><i class="fa-solid fa-robot"></i> AI/ML</span>
-                <span class="skill-tag"><i class="fa-solid fa-server"></i> REST APIs</span>
-                <span class="skill-tag"><i class="fa-brands fa-git-alt"></i> Git</span>
-                <span class="skill-tag"><i class="fa-solid fa-terminal"></i> Data Structures</span>
-                <span class="skill-tag"><i class="fa-solid fa-chart-line"></i> Data Analysis</span>
+            <div class="glass-card-back">
+                <div class="glass-category">
+                    <h4><i class="fa-solid fa-code"></i> Languages</h4>
+                    <div class="glass-tags">
+                        <span>Python</span><span>C++</span><span>JavaScript</span><span>SQL</span>
+                    </div>
+                </div>
+                <div class="glass-category">
+                    <h4><i class="fa-solid fa-brain"></i> AI & ML</h4>
+                    <div class="glass-tags">
+                        <span>Scikit-Learn</span><span>Pandas/NumPy</span><span>TF-IDF</span><span>EDA</span><span>K-Means</span><span>Feature
+                            Engineering</span><span>Data Analysis</span>
+                    </div>
+                </div>
+                <div class="glass-category">
+                    <h4><i class="fa-solid fa-globe"></i> Web Dev & APIs</h4>
+                    <div class="glass-tags">
+                        <span>Django</span><span>REST APIs</span><span>HTML/CSS</span>
+                    </div>
+                </div>
+                <div class="glass-category">
+                    <h4><i class="fa-solid fa-toolbox"></i> Tools & Core</h4>
+                    <div class="glass-tags">
+                        <span>Git & GitHub</span><span>VS Code</span><span>Jupyter Notebook</span><span>Data
+                            Structures</span><span>DSA</span><span>Competitive Programming</span>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- Soft Skills Card -->
-        <div class="skills-card">
-            <div class="skills-card-header">
+        <div class="glass-skill-card soft-card">
+            <div class="glass-card-front">
                 <i class="fa-solid fa-users"></i>
                 <h3>Soft Skills</h3>
+                <p>Hover to explore my professional traits</p>
             </div>
-            <div class="skills-grid">
-                <span class="skill-tag soft"><i class="fa-solid fa-lightbulb"></i> Problem Solving</span>
-                <span class="skill-tag soft"><i class="fa-solid fa-people-group"></i> Team Collaboration</span>
-                <span class="skill-tag soft"><i class="fa-solid fa-comments"></i> Communication</span>
-                <span class="skill-tag soft"><i class="fa-solid fa-bolt"></i> Quick Learner</span>
-                <span class="skill-tag soft"><i class="fa-solid fa-clock"></i> Time Management</span>
-                <span class="skill-tag soft"><i class="fa-solid fa-arrows-spin"></i> Adaptability</span>
-                <span class="skill-tag soft"><i class="fa-solid fa-magnifying-glass"></i> Attention to Detail</span>
-                <span class="skill-tag soft"><i class="fa-solid fa-handshake"></i> Leadership</span>
+            <div class="glass-card-back">
+                <div class="glass-tags soft-tags">
+                    <span><i class="fa-solid fa-lightbulb"></i> Problem Solving</span>
+                    <span><i class="fa-solid fa-brain"></i> Algorithmic Thinking</span>
+                    <span><i class="fa-solid fa-people-group"></i> Team Collaboration</span>
+                    <span><i class="fa-solid fa-comments"></i> Communication</span>
+                    <span><i class="fa-solid fa-bolt"></i> Quick Learner</span>
+                    <span><i class="fa-solid fa-clock"></i> Time Management</span>
+                    <span><i class="fa-solid fa-arrows-spin"></i> Adaptability</span>
+                    <span><i class="fa-solid fa-magnifying-glass"></i> Attention to Detail</span>
+                    <span><i class="fa-solid fa-handshake"></i> Leadership</span>
+                </div>
             </div>
         </div>
     </div>
@@ -190,8 +200,12 @@
             <div class="project-card-image">
                 {% if project.image %}
                 <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                {% elif 'mentor' in project.title|lower %}
+                <img src="{% static 'main/images/projects/mentor.png' %}" alt="{{ project.title }}">
                 {% elif 'dashboard' in project.title|lower %}
                 <img src="{% static 'main/images/projects/dashboard.png' %}" alt="{{ project.title }}">
+                {% elif 'emotion' in project.title|lower %}
+                <img src="{% static 'main/images/projects/emotion.png' %}" alt="{{ project.title }}">
                 {% else %}
                 <i class="fa-solid fa-code"></i>
                 {% endif %}
@@ -231,44 +245,43 @@
 </section>
 
 
-<!-- ===== CERTIFICATIONS & ACHIEVEMENTS SECTION ===== -->
-<section class="section cert-section" id="certifications">
+<!-- ===== CERTIFICATE SECTION ===== -->
+<section class="section cert-section" id="certificates">
     <div class="section-header reveal">
         <div class="cert-dash"></div>
-        <h2 class="section-title">Certifications &amp; Achievements</h2>
+        <h2 class="section-title">Certificates</h2>
     </div>
 
     <div class="cert-grid">
         {% for cert in certificates %}
         <div class="cert-card reveal">
-            <div class="cert-logo">
-                {% if cert.image %}
-                <img src="{{ cert.image.url }}" alt="{{ cert.issuer }} Logo">
+            <div class="cert-image">
+                {% if 'nptel' in cert.issuer|lower %}
+                <img src="{% static 'main/images/projects/nptel.png' %}" alt="{{ cert.title }}">
+                {% elif 'coursera' in cert.issuer|lower %}
+                <img src="{% static 'main/images/projects/coursera.png' %}" alt="{{ cert.title }}">
+                {% elif 'infosys' in cert.issuer|lower %}
+                <img src="{% static 'main/images/projects/infosys.png' %}" alt="{{ cert.title }}">
+                {% elif cert.image %}
+                <img src="{{ cert.image.url }}" alt="{{ cert.title }}">
                 {% else %}
-                <i class="{{ cert.icon }}"></i>
+                <div class="cert-image-placeholder"><i class="{{ cert.icon }}"></i></div>
                 {% endif %}
             </div>
             <div class="cert-body">
-                <div class="cert-header">
-                    <h3>{{ cert.title }}</h3>
-                    <span class="cert-issuer-badge">{{ cert.issuer }}</span>
-                </div>
+                <h3 class="cert-title">{{ cert.title }}</h3>
                 {% if cert.topics %}
-                <p class="cert-topics">• {{ cert.topics }}</p>
+                <p class="cert-topics">{{ cert.topics }}</p>
                 {% endif %}
                 <div class="cert-status">
                     Status: <span class="cert-status-value {% if cert.status == 'Certified' %}certified{% else %}in-progress{% endif %}">{{ cert.status }}</span>
+                    {% if cert.status == 'Certified' %}<i class="fa-solid fa-circle-check" style="color: #198754; margin-left: 4px;"></i>{% endif %}
                 </div>
-                
-                <div class="cert-divider"></div>
-
-                <div class="cert-footer">
-                    {% if cert.certificate_link %}
-                    <a href="{{ cert.certificate_link }}" target="_blank" class="cert-view-btn">
-                        Get Certificate <i class="fa-solid fa-chevron-right"></i>
-                    </a>
-                    {% endif %}
-                </div>
+                {% if cert.certificate_link %}
+                <a href="{{ cert.certificate_link }}" target="_blank" class="cert-view-btn">
+                    View Certificate <i class="fa-solid fa-chevron-right"></i>
+                </a>
+                {% endif %}
             </div>
         </div>
         {% empty %}
@@ -278,6 +291,41 @@
             <p>Add them from the admin panel.</p>
         </div>
         {% endfor %}
+    </div>
+</section>
+
+<!-- ===== ACHIEVEMENTS SECTION ===== -->
+<section class="section experience-section" id="achievements">
+    <div class="section-header reveal">
+        <span class="section-label">Milestones</span>
+        <h2 class="section-title">Achievements</h2>
+    </div>
+
+    <div class="experience-grid">
+        <div class="exp-card reveal">
+            <h3>Bronze Badge on CodeChef</h3>
+            <div class="exp-role">Competitive Programming</div>
+            <div class="exp-duration"><i class="fa-solid fa-medal" style="color: #cd7f32;"></i> Bronze Tier</div>
+            <p>Recognized for continuous growth, consistent performance, and problem-solving skills on the CodeChef platform.</p>
+            <div style="margin-top: 16px;">
+                <a href="https://www.codechef.com/users/abhay6205" target="_blank"
+                    style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 8px; font-size: 0.88rem; font-weight: 600; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: #fff; box-shadow: 0 4px 14px rgba(0, 200, 150, 0.3); transition: all 0.3s ease; text-decoration: none;">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> View Profile
+                </a>
+            </div>
+        </div>
+        <div class="exp-card reveal">
+            <h3>Silver in Python on HackerRank</h3>
+            <div class="exp-role">Python Programming</div>
+            <div class="exp-duration"><i class="fa-solid fa-medal" style="color: #c0c0c0;"></i> Silver Tier</div>
+            <p>Demonstrated strong proficiency in Python programming through solving complex algorithmic challenges.</p>
+            <div style="margin-top: 16px;">
+                <a href="https://www.hackerrank.com/profile/abhay11082005" target="_blank"
+                    style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 8px; font-size: 0.88rem; font-weight: 600; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: #fff; box-shadow: 0 4px 14px rgba(0, 200, 150, 0.3); transition: all 0.3s ease; text-decoration: none;">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> View Profile
+                </a>
+            </div>
+        </div>
     </div>
 </section>
 

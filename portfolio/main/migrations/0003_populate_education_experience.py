@@ -16,7 +16,7 @@ def populate_data(apps, schema_editor):
             'description': (
                 'Currently pursuing my Bachelor\'s degree with a focus on core computer '
                 'science subjects, data structures, and algorithms. Maintaining a strong '
-                'academic record with a current CGPA of 8.16.'
+                'academic record with a current CGPA of 8.18.'
             ),
             'order': 1,
         },
