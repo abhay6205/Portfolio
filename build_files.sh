@@ -1,3 +1,3 @@
 #!/bin/bash
-pip install -r requirements.txt
-python portfolio/manage.py collectstatic --noinput --clear
+python3 -m pip install -r requirements.txt --break-system-packages
+python3 portfolio/manage.py collectstatic --noinput --clear
