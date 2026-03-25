@@ -68,6 +68,38 @@
                 </div>
             </div>
         </div>
+
+        <!-- Project 3: Emotion-Based Music Recommender System -->
+        <div class="project-card reveal">
+            <div class="project-card-image">
+                <img src="{% static 'main/images/projects/emotion.png' %}" alt="Emotion-Based Music Recommender System">
+            </div>
+            <div class="project-card-body">
+                <h3>Emotion-Based Music Recommender System</h3>
+                <p>A real-time emotion-based music recommendation system built with Python. Leveraged MediaPipe
+                    to extract 468 facial landmarks and applied PCA (Principal Component Analysis) to reduce
+                    feature dimensionality by 85%, improving classification speed. Built a K-Means clustering
+                    model to classify emotions across 5 categories — Happy, Sad, Energetic, Calm, and Neutral
+                    — achieving approximately 15% higher accuracy through personalized training data. Implemented
+                    smooth emotion buffering to reduce false detections by 25%, enabling stable, real-time music
+                    recommendations matched to the user's current mood.</p>
+
+                <div class="project-tech">
+                    <span>Python</span>
+                    <span>Machine Learning</span>
+                    <span>PCA</span>
+                    <span>K-Means</span>
+                    <span>MediaPipe</span>
+                    <span>OpenCV</span>
+                </div>
+
+                <div class="project-links">
+                    <a href="https://github.com/abhay6205/Emotion-Music-Recommender" target="_blank">
+                        <i class="fa-brands fa-github"></i> Code
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 {% endblock %}
