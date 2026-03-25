@@ -40,4 +40,4 @@ COPY portfolio/ .
 EXPOSE 8080
 
 # Run migrations and start the server
-CMD ["sh", "-c", "python manage.py migrate --noinput && python manage.py runserver 0.0.0.0:8080"]
+CMD ["sh", "-c", "python manage.py migrate --noinput && gunicorn portfolio.wsgi:application --bind 0.0.0.0:8080"]
